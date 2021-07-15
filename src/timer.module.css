@@ -1,0 +1,24 @@
+.text{
+text-align: center;
+    font-family: Georgia, 'Times New Roman';
+}
+
+.timer_line{
+    display: flex;
+    width: 100%;
+    justify-content:center;
+}
+
+.timer_number{
+display: flex;
+align-items: center;
+}
+
+.timer_items{
+margin: 100px;
+}
+
+.timer_count{
+    font-family: Georgia, 'Times New Roman';
+    font-size:50px;
+}
