@@ -1,17 +1,20 @@
-import React from 'react';
-import Timer from './timer'
+import React, { createContext, useState } from 'react';
+import IntervalTimer from './intervaltimer'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import Count from './count'
 
+
+export const Store = createContext()
 
 function App() {
 
+  const [pause, setPause] = useState("")
   return (
     <BrowserRouter>
       <Switch>
+        <Store.Provider value={{ pause, setPause }}>
+          <Route exact path="/" component={IntervalTimer} />
 
-        <Route exact path="/" component={Timer} />
-        <Route exact path="/count" component={Count} />
+        </Store.Provider>
 
       </Switch>
     </BrowserRouter>

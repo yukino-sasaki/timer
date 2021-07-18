@@ -26,3 +26,36 @@ display:initial;
 .unshow{
     display: none;
 }
+
+
+
+.number_rest{
+    font-size:300px;
+    width: 100px;
+    height: 500px;
+    margin: 0;
+    margin:0 auto;  
+    color: darkgreen;
+    line-height: 500px;
+}
+
+.number_work{
+    font-size:300px;
+    width: 100px;
+    height: 500px;
+    margin: 0;
+    margin: 0 auto;
+    color:darkorange; 
+    line-height: 500px;
+}
+
+.resetButton{
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+}
+
+.number_size{
+    font-size: 50px;
+    margin: 0;
+}
