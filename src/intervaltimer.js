@@ -21,14 +21,13 @@ const Timer = () => {
     const workAudio = new Audio(WorkAudio)
     const finishAudio = new Audio(FinishAudio)
 
-    const history = useHistory()
 
     const { pause, setPause } = useContext(Store)
     console.log(pause)
 
-    const [count, setCount] = useState(10)
-    const [rest, setRest] = useState(5)
-    const [roop, setRoop] = useState(2)
+    const [count, setCount] = useState(20)
+    const [rest, setRest] = useState(10)
+    const [roop, setRoop] = useState(3)
     const [current, setCurrent] = useState(true)
     //タイマーのりレンダリングを防ぐためのuseEffectの引数にしようと思ってるやつ
 
@@ -78,7 +77,6 @@ const Timer = () => {
         else if (count === -1 && roop === 0) {
             stop()
             alert("Finished")
-            finishAudio.play()
         } else if (count === 0) {
             workAudio.play()
         }
@@ -124,8 +122,9 @@ const Timer = () => {
 
     useEffect(() => {
         if (!pause) {
-            setCount(10)
-            setRest(5)
+            setCount(20)
+            setRest(10)
+            setRoop(3)
         }
     }, [pause])
 
@@ -163,7 +162,6 @@ const Timer = () => {
 
     return (
         <>
-            <Button variant="contained" color="primary" onClick={handleTimer}>Timer</Button>
             <div className={Style.timer_items}>
                 <div className={Style.timer_inner_items}>
                     <div className={Style.timer_line}>

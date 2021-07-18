@@ -2,10 +2,19 @@ import React, { useContext } from 'react';
 import { Store } from './App'
 import Style from './count.module.css'
 import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+    reset: {
+        width: "100px",
+        fontSize: '20px',
+    }
+})
 
 const Count = (props) => {
+    const classes = useStyles()
 
-    const { pause, setPause } = useContext(Store)
+    const { setPause } = useContext(Store)
 
     console.log(props.rest)
 
@@ -13,13 +22,13 @@ const Count = (props) => {
         <div className={props.pause ? Style.show : Style.unshow}>
             <div className={Style.layer}>
                 <div className={Style.countContent}>
-                    <div >
+                    <div className={Style.radius}>
                         <p className={props.current && props.count !== -1 ? Style.number_work : Style.unshow}>{props.count}</p>
                         <p className={props.current || props.rest === -1 ? Style.unshow : Style.number_rest}>{props.rest}</p>
-                        <p className={Style.number_size}>{props.roop}</p>
                     </div>
+                    <p className={Style.number_size}>{props.roop}</p>
                     <div className={Style.resetButton}>
-                        <Button color="inherit" onClick={() => setPause(false)}>reset</Button>
+                        <Button variant="outlined" color="inherit" className={classes.reset} onClick={() => setPause(false)}>reset</Button>
                     </div>
                 </div>
             </div>

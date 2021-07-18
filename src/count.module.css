@@ -17,6 +17,7 @@
   padding: 1em;
   background:#000;
   height: 85vh;
+    position: absolute;
 }
 
 .show{
@@ -27,26 +28,36 @@ display:initial;
     display: none;
 }
 
+.radius{
+  display: block;
+  width: 500px;
+  height: 500px;
+  text-align:center;
+  line-height: 80px;
+  border-radius: 50%;
+  margin: 10px auto;
+  border: solid 3px darkgrey;
+  text-align: center;
+  line-height: 500px;
 
+}
 
 .number_rest{
     font-size:300px;
-    width: 100px;
     height: 500px;
     margin: 0;
     margin:0 auto;  
     color: darkgreen;
     line-height: 500px;
+    margin: 0 auto;
 }
 
 .number_work{
     font-size:300px;
-    width: 100px;
     height: 500px;
-    margin: 0;
-    margin: 0 auto;
     color:darkorange; 
     line-height: 500px;
+    margin: 0 auto;
 }
 
 .resetButton{
@@ -58,4 +69,8 @@ display:initial;
 .number_size{
     font-size: 50px;
     margin: 0;
+    width :50px;
+    position: relative;
+    top :50px;
+    left: 50px;
 }
