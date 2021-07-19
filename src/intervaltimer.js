@@ -23,17 +23,17 @@ const Timer = () => {
 
 
     const { pause, setPause } = useContext(Store)
-    console.log(pause)
 
     const [count, setCount] = useState(20)
     const [rest, setRest] = useState(10)
-    const [roop, setRoop] = useState(3)
+    const [loop, setloop] = useState(3)
+    //今の状態
     const [current, setCurrent] = useState(true)
-    //タイマーのりレンダリングを防ぐためのuseEffectの引数にしようと思ってるやつ
+
 
 
     const countRef = useRef(null)
-    let restRef = useRef(null)
+    const restRef = useRef(null)
     const startRef = useRef(null)
     const startRestRef = useRef(null)
 
@@ -43,7 +43,7 @@ const Timer = () => {
     const stop = () => {
         clearInterval(countRef.current)
         clearInterval(restRef.current)
-        console.log("stophandler")
+        setCurrent(true)
         setPause(false)
     }
 
@@ -69,12 +69,12 @@ const Timer = () => {
 
     }
 
-
+    //countを追うuseEffect
     useEffect(() => {
-        if (count === 0 && roop === 0) {
+        if (count === 0 && loop === 0) {
             finishAudio.play()
         }
-        else if (count === -1 && roop === 0) {
+        else if (count === -1 && loop === 0) {
             stop()
             alert("Finished")
         } else if (count === 0) {
@@ -91,9 +91,7 @@ const Timer = () => {
 
         }
 
-
-
-    }, [count, roop])
+    }, [count])
 
     useEffect(() => {
         if (rest === 0) {
@@ -103,7 +101,7 @@ const Timer = () => {
             clearInterval(restRef.current)
             setCount(startRef.current)
             startCount()
-            setRoop(c => c - 1)
+            setloop(c => c - 1)
             setCurrent(true)
         }
 
@@ -124,7 +122,7 @@ const Timer = () => {
         if (!pause) {
             setCount(20)
             setRest(10)
-            setRoop(3)
+            setloop(3)
         }
     }, [pause])
 
@@ -134,6 +132,8 @@ const Timer = () => {
     }
 
     const minus = () => {
+        if (count <= 1)
+            return
         setCount(c => c - 1)
     }
 
@@ -142,15 +142,19 @@ const Timer = () => {
     }
 
     const restMinus = () => {
+        if (rest <= 1)
+            return
         setRest(c => c - 1)
     }
 
-    const roopPlus = () => {
-        setRoop(c => c + 1)
+    const loopPlus = () => {
+        setloop(c => c + 1)
     }
 
-    const roopMinus = () => {
-        setRoop(c => c - 1)
+    const loopMinus = () => {
+        if (loop <= 0)
+            return
+        setloop(c => c - 1)
     }
 
 
@@ -183,12 +187,12 @@ const Timer = () => {
                             </div>
                         </div>
                         <div >
-                            <p className={Style.text}>roop</p>
+                            <p className={Style.text}>loop</p>
                             <div className={Style.timer_number}>
 
-                                <Button className={classes.button} onClick={() => { roopPlus() }}>+</Button>
-                                <p className={Style.timer_count}>{roop}</p>
-                                <Button className={classes.button} onClick={() => { roopMinus() }}>-</Button>
+                                <Button className={classes.button} onClick={() => { loopPlus() }}>+</Button>
+                                <p className={Style.timer_count}>{loop}</p>
+                                <Button className={classes.button} onClick={() => { loopMinus() }}>-</Button>
                             </div>
                         </div>
                     </div>
@@ -200,7 +204,7 @@ const Timer = () => {
                     </div>
                 </div>
             </div>
-            <Count count={count} rest={rest} roop={roop} pause={pause}
+            <Count count={count} rest={rest} loop={loop} pause={pause}
                 currentCount={startRef.current} currentRest={startRestRef.current} current={current} />
 
         </>

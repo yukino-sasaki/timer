@@ -16,8 +16,6 @@ const Count = (props) => {
 
     const { setPause } = useContext(Store)
 
-    console.log(props.rest)
-
     return (
         <div className={props.pause ? Style.show : Style.unshow}>
             <div className={Style.layer}>
@@ -26,7 +24,7 @@ const Count = (props) => {
                         <p className={props.current && props.count !== -1 ? Style.number_work : Style.unshow}>{props.count}</p>
                         <p className={props.current || props.rest === -1 ? Style.unshow : Style.number_rest}>{props.rest}</p>
                     </div>
-                    <p className={Style.number_size}>{props.roop}</p>
+                    <p className={Style.number_size}>{props.loop}</p>
                     <div className={Style.resetButton}>
                         <Button variant="outlined" color="inherit" className={classes.reset} onClick={() => setPause(false)}>reset</Button>
                     </div>
